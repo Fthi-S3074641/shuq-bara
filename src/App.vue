@@ -15,10 +15,10 @@ export default {
 
     }
   },
-  // mounted() {
-  //   const shuqbara = JSON.parse(window.localStorage.getItem('shuqbara'))
-  //   this.$store.dispatch('fromFile', shuqbara)
-  // }
+  mounted() {
+    const shuqbara = JSON.parse(window.localStorage.getItem('shuqbara'))
+    this.$store.dispatch('fromFile', shuqbara)
+  }
 
 };
 </script>

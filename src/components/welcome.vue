@@ -1,5 +1,4 @@
 <template>
-<v-parallax :src="'https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg'" height="600" width="1000">
   <v-container>
     <v-layout
       text-center
@@ -11,7 +10,7 @@
       <v-card flat style="margin: 1px;" class="transparent elevation-0">
       <v-card-title>
       <v-row justify="center" align="center">
-      <v-col >
+      <v-col cols="12" sm="10" md="8" lg="6">
                 <v-img
                   :src="require('../assets/shuqbara.svg')"
                   class="mt-3"
@@ -21,10 +20,10 @@
                 ></v-img>
 
       </v-col>
-      <v-col >
-                <div class="display-1 text-uppercase  white--text text-xs-center"> Shuq-bara <span class="black--text font-weight-light"> Inventory</span> </div>
+      <v-col cols="12" sm="10" md="8" lg="6">
+                <div class="display-1 text-uppercase  blue--text text-xs-center"> Shuq-bara <span class="black--text font-weight-light"> Inventory</span> </div>
                 <br>
-                <small><h3 class="text-xs-center white--text font-weight-light"> A mobile app to allow Buisness owners  Manage Inventory & Generate Reports using a Smartphone.  </h3></small>
+                <small><h3 class="text-xs-center black--text font-weight-light"> A mobile app to allow Buisness owners Manage Inventory & Generate Reports using a Smartphone.  </h3></small>
                 <br>
               <v-layout justify-center>
                   <v-btn outlined color="blue lighten-1" large @click="goThere('/register')"  > 
@@ -46,7 +45,6 @@
     </v-flex>
     </v-layout>
   </v-container>
-    </v-parallax>
 </template>
 
 <script>
