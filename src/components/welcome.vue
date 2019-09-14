@@ -12,7 +12,7 @@
       <v-row justify="center" align="center">
       <v-col cols="12" sm="10" md="8" lg="6">
                 <v-img
-                  :src="require('../assets/shuqbara.svg')"
+                  :src="'https://raw.githubusercontent.com/Fthi-S3074641/aksumitetours/master/shuqbara.svg'"
                   class="mt-3"
                   contain
                   height="250"

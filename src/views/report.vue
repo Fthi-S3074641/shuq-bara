@@ -12,7 +12,7 @@
       <v-card-title>
             <v-flex xs12>
                 <v-img
-                :src="require('../assets/shuqbarapremium.svg')"
+                :src="'https://raw.githubusercontent.com/Fthi-S3074641/aksumitetours/master/shuqbarapremium.svg'"
                 class="my-3"
                 contain
                 height="200"
