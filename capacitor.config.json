@@ -1,0 +1,7 @@
+{
+  "appId": "org.dotftu.shuqbara",
+  "appName": "shuqbara",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist"
+}
