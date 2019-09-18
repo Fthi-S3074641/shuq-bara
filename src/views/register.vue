@@ -13,7 +13,7 @@
           </v-toolbar-title>
 
         <v-spacer></v-spacer>
-            <span>  <v-btn text color="primary" :disabled="!formisValid" @click="submit">Register</v-btn></span>
+            <span class="hidden-md-and-up">  <v-btn text color="primary" :disabled="!formisValid" @click="submit" >Register</v-btn></span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn
           v-for="(it, index) in items"
@@ -80,35 +80,35 @@
     </v-stepper-step>
 
     <v-stepper-content step="1">
-        <v-row align="center" justify="center" style="margin: 3px;">
+        <v-row align="center" justify="center" >
             <v-btn text @click="$router.go(-1)">Cancel</v-btn>
               <div class="flex-grow-1"></div>
             <v-btn text color="primary" :disabled="icode == null" @click="e6 = 2">Continue</v-btn>
         </v-row>
-        <v-text-field label="Code" placeholder="ID of the new item" clearable autofocus  required ref="icode" v-model="icode" :rules="[() => !!icode || 'This field is required']" ></v-text-field>
+        <v-text-field label="Code" placeholder="ID of the new item" clearable  required ref="icode" v-model="icode" :rules="[() => !!icode || 'This field is required']" ></v-text-field>
     </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 2" step="2">Brand name</v-stepper-step>
 
     <v-stepper-content step="2">
-        <v-row align="center" justify="center" style="margin: 3px;">
+        <v-row align="center" justify="center" >
             <v-btn text @click="e6 = 1">Go back</v-btn>
             <div class="flex-grow-1"></div>
             <v-btn text color="primary" :disabled="ibrand == null" @click="e6 = 3">Continue</v-btn>
         </v-row>
-          <v-text-field label="Brand" placeholder="Brand of the new item" clearable  autofocus required ref="ibrand" v-model="ibrand" :rules="[() => !!ibrand || 'This field is required']"></v-text-field>
+          <v-text-field label="Brand" placeholder="Brand of the new item" clearable  required ref="ibrand" v-model="ibrand" :rules="[() => !!ibrand || 'This field is required']"></v-text-field>
     </v-stepper-content>
 
     <v-stepper-step :complete="e6 > 3" step="3">Type or Group of the item
           <small>Use this field for anything you like</small>
     </v-stepper-step>
     <v-stepper-content step="3">
-          <v-row align="center" justify="center" style="margin: 3px;">
+          <v-row align="center" justify="center" >
             <v-btn text @click="e6 = 2">Go back</v-btn>
             <div class="flex-grow-1"></div>
             <v-btn text color="primary" :disabled="itype == null" @click="e6 = 4">Continue</v-btn>
         </v-row>
-          <v-text-field label="Type" placeholder="Category of the new item" clearable  autofocus required ref="itype" v-model="itype" :rules="[() => !!itype || 'This field is required']"></v-text-field>
+          <v-text-field label="Type" placeholder="Category of the new item" clearable required ref="itype" v-model="itype" :rules="[() => !!itype || 'This field is required']"></v-text-field>
     </v-stepper-content>
 
     <v-stepper-step step="4">
@@ -116,7 +116,7 @@
     <small> Number of items to register </small>
     </v-stepper-step>
     <v-stepper-content step="4">
-            <v-row align="center" justify="center" style="margin: 3px;">
+            <v-row align="center" justify="center">
             <v-btn text @click="e6 = 3">Go back</v-btn>
             <div class="flex-grow-1"></div>
             <v-btn text color="primary" :disabled="!formisValid" @click="submit">Register</v-btn>
@@ -224,11 +224,6 @@ export default {
           this.iquantity >= 1 &&
           this.ibrand !== null
         )
-      }
-    },
-    watch: {
-      name () {
-        this.errorMessages = ''
       }
     },
     mounted() {

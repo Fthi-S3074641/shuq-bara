@@ -8,7 +8,12 @@
           @click.stop="drawer = !drawer"
           class="hidden-md-and-up"
         ></v-app-bar-nav-icon>
-        <v-toolbar-title style="padding-top: 20px;">
+        <v-toolbar-title class="headline" style="padding-top: 10px;">
+        <v-row>
+        <v-col class="hidden-sm-and-down font-weight-light">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manage Items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </v-col>
+        <v-col style="width: 350px; margin: 2px;">
         <v-text-field
             placeholder="Enter a unique code"
             append-icon="mdi-magnify"
@@ -16,9 +21,15 @@
             required
             primary
             v-model="searchString"
-          ></v-text-field> 
-            </v-toolbar-title>
-<v-spacer> </v-spacer>
+          ></v-text-field></v-col></v-row>
+          </v-toolbar-title>
+        <v-spacer></v-spacer>
+      <span class="hidden-md-and-up" style="padding-left: 5px;" >
+                <v-btn  fab dark small color="primary" @click="$router.push('/register')">
+                <v-icon > mdi-plus</v-icon>
+                </v-btn>
+                </span>
+                
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn
           v-for="(it, index) in items"
@@ -75,7 +86,7 @@
     <v-col cols="12" sm="10" md="8" lg="6">
         <v-card flat class="transparent elevation-0">
 
-    <v-card-text>
+    <v-card-text style="height: 400px;">
     <v-list three-line class="transparent elevation-0">
 
           <v-list-group
@@ -94,7 +105,7 @@
         <v-list-item
           :key="item.icode"
         >
-              <v-list-item-avatar color="primary" size="36">
+              <v-list-item-avatar :color='getColor(item.iquantity)' size="36">
                 <span class="white--text title font-weight-light">{{item.iquantity}}</span>
               </v-list-item-avatar>
 
@@ -128,13 +139,8 @@
         </v-list-group>
     </v-list>
     </v-card-text>
-<v-card-actions>
+<v-card-actions class="hidden-sm-and-down">
           <v-row align="center" justify="center" style="margin: 3px;">
-        <span class="font-weight-light">
-                <v-icon @click="descendingList" color="primary"> mdi-arrow-down</v-icon>
-                Order List  
-                <v-icon @click="increasingList" color="primary"> mdi-arrow-up</v-icon>
-            </span>
             <div class="flex-grow-1"></div>
            
                 <v-btn  fab dark color="primary" @click="$router.push('/register')">
@@ -184,6 +190,10 @@ export default {
         },
       descendingList() {
           this.shuqbara.sort((a, b) => b.iquantity - a.iquantity);
+        },
+        getColor(qun) {
+                    if(qun > '2') {return 'primary'}
+          else {return 'red'}
         }
   },
     computed: {

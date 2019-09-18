@@ -126,13 +126,6 @@ export default {
         }
       }
     },
-
-    watch: {
-      name () {
-        this.errorMessages = ''
-      },
-    },
-
     methods: {
       submit () {
         this.formHasErrors = false
