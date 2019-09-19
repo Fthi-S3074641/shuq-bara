@@ -8,7 +8,7 @@
       </template>
       <v-card>
         <v-card-title class="headline red lighten-2" primary-title>
-          Warning deleting: "{{dcode}}"
+          Deleting: "{{dcode}}"
         </v-card-title>
         <v-card-text>
         It will be deleted from the database forever.<br> Are you sure you want to delete this item "<span class="font-weight-bold">{{dcode}}</span>"???

@@ -7,7 +7,7 @@
 
       <v-card>
         <v-card-title class="primary headline grey lighten-2" primary-title>
-          Selling item: "{{scode}}"
+          Selling: "{{scode}}"
         </v-card-title>
         <v-card-text>
             <v-row justify="center" color="primary">

@@ -8,7 +8,7 @@
       </template>
       <v-card>
         <v-card-title class="danger headline grey lighten-1" primary-title>
-          Update "{{ ecode }}" details
+          Modify: "{{ ecode }}"
         </v-card-title>
         <v-card-text>
         <v-row justify="center" color="primary" class="form row">

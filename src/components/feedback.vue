@@ -1,7 +1,7 @@
 <template class="transparent">
-  <v-expansion-panels dense flat :focusable="true" class="transparent elevation-0" style="background: rgba(0,0,0,0);">
+  <v-expansion-panels v-model="panel" dense flat :accordion="true" :focusable="true" class="transparent elevation-0" style="background: rgba(0,0,0,0);">
     <v-expansion-panel>
-      <v-expansion-panel-header class=" font-weight-light">{{getName}}&nbsp; &mdash; &nbsp;<span class='text--primary'>{{getPhone}}</span>  Share your feedback!
+      <v-expansion-panel-header class=" font-weight-light"><span class='text--primary'>{{getName}}&nbsp; &mdash; &nbsp;{{getPhone}} </span> 
          <template v-slot:actions>
             <v-icon color="red lighten-2">mdi-heart</v-icon>
           </template>
@@ -31,7 +31,8 @@ export default {
         return {
             feedbacks: [],
             mainFeedback: null,
-            feedbackTitle: null
+            feedbackTitle: null,
+            panel: []
         }
     },
   firestore() {
@@ -50,7 +51,7 @@ export default {
                 }
 
                     this.$firestore.feedbacks.add(newFeedback)
-                    this.$router.push({name: '/comments', params: {feedback: newFeedback}})
+                    this.panel = []
         }
     },
     computed: {

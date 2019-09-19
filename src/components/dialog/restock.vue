@@ -8,7 +8,7 @@
         <v-card-title
           class="primary headline grey lighten-2"
           primary-title>
-          Adding item: "{{rcode}}"
+          Adding: "{{rcode}}"
         </v-card-title>
 
         <v-card-text>
