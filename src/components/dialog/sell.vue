@@ -1,46 +1,19 @@
 <template>
   <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      persistent
-      width="500"
-    >
+    <v-dialog v-model="dialog" persistent width="500">
       <template v-slot:activator="{ on }">
-                 <v-chip
-                 v-if="!sold"
-                    class="primary lighten-1 ma-2"
-                    text-color="white"
-                    v-on="on"
-                    small
-                  >
-                   Sell
-                  </v-chip>
-              <v-chip
-                 v-if="sold"
-                    class="primary lighten-1 ma-2"
-                    text-color="white"
-                    v-on="on"
-                    small
-                  >
-                   Sell again
-                  </v-chip>
+        <v-chip class="primary lighten-1 ma-2" text-color="white" v-on="on" small> Sell              </v-chip>
       </template>
 
       <v-card>
-        <v-card-title
-          class="primary headline grey lighten-2"
-          primary-title>
-          Sell item "{{scode}}"
+        <v-card-title class="primary headline grey lighten-2" primary-title>
+          Selling item: "{{scode}}"
         </v-card-title>
-
         <v-card-text>
-        <v-container>
             <v-row justify="center" color="primary">
             <v-col cols="12" sm="8">
-
-       <p> An item of code "<span class="font-weight-bold">{{scode}}</span>" will be sold from your stock. Therefore the quantity of available items will decrease by {{amount}}.
-        <br> Confirm if {{amount}} item will be sold?</p>
-              
+            <p> The quantity of available items will decrease by {{amount}}.
+              <br> Are you sure you want to sell {{amount}} item from "<span class="font-weight-bold">{{scode}}</span>"?</p>
             <v-text-field
             label="Quantity"
             clearable
@@ -48,15 +21,11 @@
             v-model="amount"
             type="number"
           ></v-text-field>
-        <v-divider></v-divider>
-          <p color="red" class="font-weight-bold red--text" v-if="!quantityEnough">Must enter amount less than available in store</p>
-                 </v-col>
-            </v-row>
-        </v-container>
+          <p color="red" class="font-weight-bold red--text" v-if="!quantityEnough">Must be less than what is available</p>
+        </v-col>
+        </v-row>
   </v-card-text>
-
           <v-card-actions>
-              <div class="flex-grow-1"></div>
                 <v-btn
                 color="secondary"
                 text
@@ -64,7 +33,7 @@
               >
                 Cancel
               </v-btn>
-              <v-spacer />
+              <div class="flex-grow-1"></div>
               <v-btn
                 :disabled="!quantityEnough"
                 color="primary"
@@ -99,7 +68,7 @@ export default {
 
         this.$store.dispatch('removeItem', indx).then(()=> {
           this.soldItem.iquantity = parseInt(oldq) - parseInt(this.amount)
-          this.soldItem.iactivity.push({title: `-${this.amount},`, idate: etdate.now()})
+          this.soldItem.iactivity.push({title: `-${this.amount}: `, idate: etdate.now()})
           this.$store.dispatch('addItem', this.soldItem).then(()=> {
             this.dialog = false
             this.sold = true

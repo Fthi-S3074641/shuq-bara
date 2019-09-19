@@ -1,58 +1,25 @@
 <template>
   <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      persistent
-      width="500"
-    >
+    <v-dialog v-model="dialog" persistent width="500">
       <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
                 <v-icon>mdi-pencil</v-icon>
             </v-btn>
-
       </template>
-
       <v-card>
-        <v-card-title
-          class="danger headline grey lighten-1"
-          primary-title
-        >
+        <v-card-title class="danger headline grey lighten-1" primary-title>
           Update "{{ ecode }}" details
         </v-card-title>
-
         <v-card-text>
-        <v-container>
         <v-row justify="center" color="primary" class="form row">
-
         <v-col cols="12" sm="8">
-          <v-text-field
-            label="Code"
-            clearable
-            autofocus
-            outlined
-            v-model="newicode"
-          ></v-text-field>
-                    <v-text-field
-            label="Brand"
-            outlined
-            clearable
-            v-model="newibrand"
-          ></v-text-field>
-                    <v-text-field
-            label="Type"
-            outlined
-            clearable
-            v-model="newitype"
-          ></v-text-field>
+          <v-text-field label="Code" clearable outlined v-model="newicode"></v-text-field>
+          <v-text-field label="Brand" outlined clearable v-model="newibrand"></v-text-field>
+          <v-text-field label="Type" outlined autofocus clearable v-model="newitype"></v-text-field>
         </v-col>
-            </v-row>
-            </v-container>
+        </v-row>
         </v-card-text>
-
-        <v-divider></v-divider>
-
         <v-card-actions>
-          <div class="flex-grow-1"></div>
           <v-btn
             color="secondary"
             text
@@ -60,7 +27,7 @@
           >
             Cancel
           </v-btn>
-          <v-spacer />
+          <div class="flex-grow-1"></div>
           <v-btn
             color="primary"
             text

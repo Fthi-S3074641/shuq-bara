@@ -1,34 +1,19 @@
 <template>
   <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      persistent
-      width="500"
-    >
+    <v-dialog v-model="dialog" persistent width="500">
       <template v-slot:activator="{ on }">
         <v-btn icon color="red lighten-2" v-on="on">
                     <v-icon>mdi-delete</v-icon>
         </v-btn>
-
       </template>
-
       <v-card>
-        <v-card-title
-          class="warning headline grey lighten-2"
-          primary-title
-        >
-          Warning deleting "{{dcode}}"
+        <v-card-title class="headline red lighten-2" primary-title>
+          Warning deleting: "{{dcode}}"
         </v-card-title>
-
         <v-card-text>
-        You are about to delete an item with the following code "<span class="font-weight-bold">{{dcode}}</span>" from the database. 
-        You will no longer have access to it.<br> Are you sure you want to delete this item???
-                </v-card-text>
-
-        <v-divider></v-divider>
-
+        It will be deleted from the database forever.<br> Are you sure you want to delete this item "<span class="font-weight-bold">{{dcode}}</span>"???
+        </v-card-text>
         <v-card-actions>
-          <div class="flex-grow-1"></div>
           <v-btn
             color="secondary"
             text
@@ -36,9 +21,9 @@
           >
             Cancel
           </v-btn>
-          <v-spacer />
+          <div class="flex-grow-1"></div>
           <v-btn
-            color="warning"
+            color="red lighten-1"
             text
             @click="yesRemove"
           >

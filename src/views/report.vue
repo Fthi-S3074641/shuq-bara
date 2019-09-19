@@ -20,10 +20,11 @@
                 ></v-img>
             </v-flex>
             <v-flex mb-4>
-                    <h1 class="headline text-uppercase mb-3 red--text">
-                <span> Shuqbara </span>
-                <span class="font-weight-light black--text"> Premium</span>
+                    <h1 >
+                <span class="headline text-uppercase mb-3 red--text"> Shuqbara </span>
+                <span class="headline text-uppercase mb-3 font-weight-light black--text"> Premium</span>
                 </h1>
+                <small class="font-weight-light"> Coming up soon! </small>
             </v-flex>
        </v-card-title>
 
@@ -57,6 +58,10 @@
             <v-icon small>mdi-map-marker</v-icon>
             Axum, Tigray, Ethiopia:: 
             Near Ezana Park @Teklish Dish </h6>
+            <h6 class="font-weight-light"> 
+            <v-icon small>mdi-web</v-icon>
+            Visit our website 
+            www.shuqbara.com </h6>
         </div>
         </v-flex>
         </v-layout>

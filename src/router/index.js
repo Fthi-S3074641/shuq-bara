@@ -11,6 +11,9 @@ import comments from './../views/comments'
 Vue.use(Vrouter)
 
 export default new Vrouter({
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+      },
     routes: [
         {
             path: '/',
@@ -42,5 +45,6 @@ export default new Vrouter({
             name: '/comments',
             component: comments
         }
-    ]
+    ],
+    mode: 'history'
 })

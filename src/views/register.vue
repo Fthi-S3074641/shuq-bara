@@ -1,9 +1,9 @@
 <template>
-  <v-app dense style="background: rgba(0,0,0,0);" class="elevation-0">
+  <v-app>
     <!-- Start of Navigation -->
-    <nav style="background: rgba(0,0,0,0);" class="elevation-0">
-      <!-- Start of app toolbar -->
-      <v-app-bar app flat dense style="background: rgba(0,0,0,0);" class="elevation-0">
+    <nav>
+      <!-- Start of app toolbar style="background: rgba(0,0,0,0);"-->
+      <v-app-bar app class="elevation-0">
         <v-app-bar-nav-icon
           @click.stop="drawer = !drawer"
           class="hidden-md-and-up"
@@ -13,7 +13,7 @@
           </v-toolbar-title>
 
         <v-spacer></v-spacer>
-            <span class="hidden-md-and-up">  <v-btn text color="primary" :disabled="!formisValid" @click="submit" >Register</v-btn></span>
+            <span class="hidden-md-and-up">  <v-btn class="primary" :disabled="!formisValid" v-if="formisValid" @click="submit" >Register</v-btn></span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn
           v-for="(it, index) in items"
@@ -31,7 +31,7 @@
         <!-- Menu title -->
         <v-app-bar flat>
           <v-list>
-            <v-subheader class="title"> Shuqbara </v-subheader>
+            <v-subheader class="headline" @click="$router.push('/')"> Shuqbara </v-subheader>
           </v-list>
         </v-app-bar>
         <v-divider></v-divider>
@@ -47,14 +47,14 @@
             <v-icon v-text="item.icon"></v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-             <v-list-item-title v-text="item.text"></v-list-item-title>
+             <v-list-item-title >{{item.text}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item :to="getLink">
           <v-list-item-icon>
-            <v-icon> mdi-information-variant</v-icon>
+            <v-icon color="red" v-text="'mdi-heart'"> </v-icon>
               <v-list-item-content>
-                <v-list-item-title> Comments</v-list-item-title>
+                <v-list-item-title>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment </v-list-item-title>
               </v-list-item-content>
           </v-list-item-icon>
         </v-list-item>
@@ -67,67 +67,67 @@
 
     <v-content style="padding: 0px;">
 
-          <v-row justify="center">
-    <v-col cols="12" sm="10" md="8" lg="6">
+      <v-row justify="center">
+        <v-col cols="12" sm="10" md="8" lg="6">
 
-    <v-card flat class="transparent elevation-0" ref="form" >
+        <v-card flat class="transparent elevation-0" ref="form" >
 
-      <v-card-text>
-      <v-stepper v-model="e6" vertical flat class="elevation-0" style="background: rgba(0,0,0,0);">
-    <v-stepper-step :complete="e6 > 1" step="1">
-      Code or ID
-      <small>unique name for the new Item</small>
-    </v-stepper-step>
+        <v-card-text>
+        <v-stepper v-model="e6" vertical flat class="elevation-0" style="background: rgba(0,0,0,0);">
+        <v-stepper-step :complete="e6 > 1" step="1">
+        Code or ID
+        <small>unique name for the new Item</small>
+        </v-stepper-step>
 
-    <v-stepper-content step="1">
-        <v-row align="center" justify="center" >
-            <v-btn text @click="$router.go(-1)">Cancel</v-btn>
-              <div class="flex-grow-1"></div>
-            <v-btn text color="primary" :disabled="icode == null" @click="e6 = 2">Continue</v-btn>
-        </v-row>
-        <v-text-field label="Code" placeholder="ID of the new item" clearable  required ref="icode" v-model="icode" :rules="[() => !!icode || 'This field is required']" ></v-text-field>
-    </v-stepper-content>
+        <v-stepper-content step="1">
+            <v-row align="center" justify="center" >
+                <v-btn text @click="$router.go(-1)">Cancel</v-btn>
+                  <div class="flex-grow-1"></div>
+                <v-btn text color="primary" :disabled="icode == null" @click="e6 = 2">Continue</v-btn>
+            </v-row>
+            <v-text-field label="Code" placeholder="ID of the new item" clearable  required ref="icode" v-model="icode" :rules="[() => !!icode || 'This field is required']" ></v-text-field>
+        </v-stepper-content>
 
-    <v-stepper-step :complete="e6 > 2" step="2">Brand name</v-stepper-step>
+        <v-stepper-step :complete="e6 > 2" step="2">Brand name</v-stepper-step>
 
-    <v-stepper-content step="2">
-        <v-row align="center" justify="center" >
-            <v-btn text @click="e6 = 1">Go back</v-btn>
-            <div class="flex-grow-1"></div>
-            <v-btn text color="primary" :disabled="ibrand == null" @click="e6 = 3">Continue</v-btn>
-        </v-row>
-          <v-text-field label="Brand" placeholder="Brand of the new item" clearable  required ref="ibrand" v-model="ibrand" :rules="[() => !!ibrand || 'This field is required']"></v-text-field>
-    </v-stepper-content>
+        <v-stepper-content step="2">
+            <v-row align="center" justify="center" >
+                <v-btn text @click="e6 = 1">Go back</v-btn>
+                <div class="flex-grow-1"></div>
+                <v-btn text color="primary" :disabled="ibrand == null" @click="e6 = 3">Continue</v-btn>
+            </v-row>
+              <v-text-field label="Brand" placeholder="Brand of the new item" clearable  required ref="ibrand" v-model="ibrand" :rules="[() => !!ibrand || 'This field is required']"></v-text-field>
+        </v-stepper-content>
 
-    <v-stepper-step :complete="e6 > 3" step="3">Type or Group of the item
-          <small>Use this field for anything you like</small>
-    </v-stepper-step>
-    <v-stepper-content step="3">
-          <v-row align="center" justify="center" >
-            <v-btn text @click="e6 = 2">Go back</v-btn>
-            <div class="flex-grow-1"></div>
-            <v-btn text color="primary" :disabled="itype == null" @click="e6 = 4">Continue</v-btn>
-        </v-row>
-          <v-text-field label="Type" placeholder="Category of the new item" clearable required ref="itype" v-model="itype" :rules="[() => !!itype || 'This field is required']"></v-text-field>
-    </v-stepper-content>
+        <v-stepper-step :complete="e6 > 3" step="3">Type or Group of the item
+              <small>Use this field for anything you like</small>
+        </v-stepper-step>
+        <v-stepper-content step="3">
+              <v-row align="center" justify="center" >
+                <v-btn text @click="e6 = 2">Go back</v-btn>
+                <div class="flex-grow-1"></div>
+                <v-btn text color="primary" :disabled="itype == null" @click="e6 = 4">Continue</v-btn>
+            </v-row>
+              <v-text-field label="Type" placeholder="Category of the new item" clearable required ref="itype" v-model="itype" :rules="[() => !!itype || 'This field is required']"></v-text-field>
+        </v-stepper-content>
 
-    <v-stepper-step step="4">
-    Quantity 
-    <small> Number of items to register </small>
-    </v-stepper-step>
-    <v-stepper-content step="4">
-            <v-row align="center" justify="center">
-            <v-btn text @click="e6 = 3">Go back</v-btn>
-            <div class="flex-grow-1"></div>
-            <v-btn text color="primary" :disabled="!formisValid" @click="submit">Register</v-btn>
-          </v-row>
-          <v-text-field label="Quantity" placeholder="Number of items to register" clearable required ref="iquantity" v-model="iquantity" type="number" :rules="[() => !!iquantity || 'Must be greater than 1']"></v-text-field>
-      </v-stepper-content>
+        <v-stepper-step step="4">
+        Quantity 
+        <small> Number of items to register </small>
+        </v-stepper-step>
+        <v-stepper-content step="4">
+              <v-text-field label="Quantity" placeholder="Number of items to register" clearable required ref="iquantity" v-model="iquantity" type="number" :rules="[() => !!iquantity || 'Must be greater than 1']"></v-text-field>
+              <v-row align="center" justify="center">
+                <v-btn text @click="$router.go(-1)">Exit</v-btn>
+                <div class="flex-grow-1"></div>
+                <v-btn text @click="e6 = 3">Go back</v-btn>
+              </v-row>
+          </v-stepper-content>
         </v-stepper>
-  </v-card-text>
+        </v-card-text>
       </v-card>
-    </v-col>
-  </v-row>
+      </v-col>
+      </v-row>
     
     </v-content>
   </v-app>
@@ -185,7 +185,7 @@ export default {
             itype: this.itype,
             istate: "Created",
             iwhen: etdate.now(),
-            iactivity: [ ]
+            iactivity: [{title: 'New: ', idate: etdate.now()} ]
           }
           this.$store.dispatch('addItem', inew).then(()=> {
                 const shuqbara = JSON.stringify(this.$store.state.allItems)

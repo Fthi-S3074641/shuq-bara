@@ -1,34 +1,26 @@
 <template>
-  <v-app dense style="background: rgba(0,0,0,0);">
+  <v-app>
     <!-- Start of Navigation -->
-    <nav class="elevation-0" style="background: rgba(0,0,0,0);">
-      <!-- Start of app toolbar -->
-      <v-app-bar app flat dense class="elevation-0" style="background: rgba(0,0,0,0);">
+    <nav>
+      <!-- Start of app toolbar style="background: rgba(0,0,0,0);" -->
+      <v-app-bar app class="elevation-0">
         <v-app-bar-nav-icon
           @click.stop="drawer = !drawer"
           class="hidden-md-and-up"
         ></v-app-bar-nav-icon>
-        <v-toolbar-title class="headline" style="padding-top: 10px;">
-        <v-row>
-        <v-col class="hidden-sm-and-down font-weight-light">
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manage Items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        </v-col>
-        <v-col style="width: 350px; margin: 2px;">
+        <v-toolbar-title class="headline flex-grow-1" style="padding-top: 20px;">
         <v-text-field
-            placeholder="Enter a unique code"
+            placeholder="Search ID / Code"
             append-icon="mdi-magnify"
             clearable
-            required
             primary
+            autofocus
             v-model="searchString"
-          ></v-text-field></v-col></v-row>
+            underline
+            loading
+            single-line
+          ></v-text-field>
           </v-toolbar-title>
-        <v-spacer></v-spacer>
-      <span class="hidden-md-and-up" style="padding-left: 5px;" >
-                <v-btn  fab dark small color="primary" @click="$router.push('/register')">
-                <v-icon > mdi-plus</v-icon>
-                </v-btn>
-                </span>
                 
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn
@@ -47,7 +39,7 @@
         <!-- Menu title -->
         <v-app-bar flat>
           <v-list>
-            <v-subheader class="title"> Shuqbara </v-subheader>
+            <v-subheader class="title" @click="$router.push('/')"> Shuqbara </v-subheader>
           </v-list>
         </v-app-bar>
         <v-divider></v-divider>
@@ -68,9 +60,9 @@
         </v-list-item>
         <v-list-item :to="getLink">
           <v-list-item-icon>
-            <v-icon> mdi-information-variant</v-icon>
+            <v-icon color="red" v-text="'mdi-heart'"> </v-icon>
               <v-list-item-content>
-                <v-list-item-title> Comments</v-list-item-title>
+                <v-list-item-title>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment </v-list-item-title>
               </v-list-item-content>
           </v-list-item-icon>
         </v-list-item>
@@ -87,72 +79,48 @@
         <v-card flat class="transparent elevation-0">
 
     <v-card-text style="height: 400px;">
-    <v-list three-line class="transparent elevation-0">
-
-          <v-list-group
-        v-for="(item, index) in filteredArticles"
-        :key="item.icode"
-        no-action
-        :accordion="true"
-        :focusable="true"
-      >
-        <v-divider
-          :key="index"
-          :inset="true"
-        ></v-divider>
-      <template v-slot:activator>
-
-        <v-list-item
-          :key="item.icode"
-        >
-              <v-list-item-avatar :color='getColor(item.iquantity)' size="36">
-                <span class="white--text title font-weight-light">{{item.iquantity}}</span>
-              </v-list-item-avatar>
-
-              <v-list-item-content>
-                <v-list-item-title class="title font-weight-light" v-html="item.icode"></v-list-item-title>
-                <v-list-item-subtitle v-html="`<span class='text--primary'>${item.ibrand}</span> &mdash; ${item.itype}.`"></v-list-item-subtitle>
+      <v-list two-line class="transparent elevation-0">
+        <v-list-group v-for="(item, index) in filteredArticles" :key="index" no-action :accordion="true" :focusable="true">
+        <v-divider :key="index" :inset="true"></v-divider>
+        <template v-slot:activator>
+          <v-list-item :key="index">
+            <v-list-item-avatar :color='getColor(item.iquantity)' size="36">
+              <span class="white--text title font-weight-light">{{item.iquantity}}</span>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="title font-weight-light" v-html="`${item.icode}`"></v-list-item-title>
+              <v-list-item-subtitle v-html="`<span class='text--primary'>${item.ibrand}</span> &mdash; ${item.itype}.`"></v-list-item-subtitle>
               </v-list-item-content>
+          </v-list-item>
+        </template>
 
-        </v-list-item>
-      </template>
-
-              <v-list-item>
+        <v-list-item>
           <v-list-item-content>
-            <v-list-item-subtitle 
-              v-for="(subItem, index) in item.iactivity"
-              :key="index"
-              v-text="`${subItem.title} ${subItem.idate}`"></v-list-item-subtitle>
+            <v-list-item-title>             
+              <v-row justify="space-around">
+                <Sell :scode="item.icode"/>
+                <Restock :rcode="item.icode"/>
+                <Edit :ecode="item.icode"/>
+                <Delete :dcode="item.icode"/>
+              </v-row>
+            </v-list-item-title>
+            <v-list-item-subtitle v-for="(subItem, index) in item.iactivity" :key="index" v-text="`${subItem.title} ${subItem.idate}`"></v-list-item-subtitle>
           </v-list-item-content>
-
-
-              <v-list-item-action>
-                <v-list-item-action-text v-text="`${item.iwhen}`"></v-list-item-action-text>
-                <v-row justify="space-around">
-                  <Sell :scode="item.icode"/>
-                  <Restock :rcode="item.icode"/>
-                  <Edit :ecode="item.icode"/>
-                  <Delete :dcode="item.icode"/>
-                </v-row>
-            </v-list-item-action>
         </v-list-item>
-        </v-list-group>
+      </v-list-group>
     </v-list>
-    </v-card-text>
-<v-card-actions class="hidden-sm-and-down">
-          <v-row align="center" justify="center" style="margin: 3px;">
-            <div class="flex-grow-1"></div>
-           
-                <v-btn  fab dark color="primary" @click="$router.push('/register')">
-                <v-icon > mdi-plus</v-icon>
-                </v-btn>
-        </v-row>
-            </v-card-actions>
+  </v-card-text>
     </v-card>
   </v-col>
   </v-row>
     
     </v-content>
+      <v-footer app fixed class="transparent">
+    <div class="flex-grow-1"></div>
+      <v-btn  fab dark color="primary" @click="$router.push('/register')">
+        <v-icon > mdi-plus</v-icon>
+      </v-btn>
+  </v-footer>
   </v-app>
 </template>
 
@@ -192,8 +160,8 @@ export default {
           this.shuqbara.sort((a, b) => b.iquantity - a.iquantity);
         },
         getColor(qun) {
-                    if(qun > '2') {return 'primary'}
-          else {return 'red'}
+                    if(qun > '2') {return 'primary lighten-2'}
+          else {return 'red lighten-2'}
         }
   },
     computed: {
@@ -241,7 +209,6 @@ export default {
     },
     created() {
       this.shuqbara = this.$store.state.allItems
-      // this.$store.dispatch('turnoffTitle', false)
     },
     mounted() {
         const shuqName = JSON.parse(window.localStorage.getItem('shuqName'))
