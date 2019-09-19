@@ -160,7 +160,7 @@ export default {
           this.shuqbara.sort((a, b) => b.iquantity - a.iquantity);
         },
         getColor(qun) {
-                    if(qun > '2') {return 'primary lighten-2'}
+                    if(parseInt(qun) > 2) {return 'primary lighten-2'}
           else {return 'red lighten-2'}
         }
   },
