@@ -85,7 +85,7 @@
                   <div class="flex-grow-1"></div>
                 <v-btn text color="primary" :disabled="icode == null" @click="e6 = 2">Continue</v-btn>
             </v-row>
-            <v-text-field label="Code" placeholder="ID of the new item" clearable  required ref="icode" v-model="icode" :rules="[() => !!icode || 'This field is required']" ></v-text-field>
+            <v-text-field v-on:keyup.enter="e6 = 2" outlined placeholder="ID of the new item" clearable  required ref="icode" v-model="icode" :rules="[() => !!icode || 'This field is required']" ></v-text-field>
         </v-stepper-content>
 
         <v-stepper-step :complete="e6 > 2" step="2">Brand name</v-stepper-step>
@@ -96,7 +96,7 @@
                 <div class="flex-grow-1"></div>
                 <v-btn text color="primary" :disabled="ibrand == null" @click="e6 = 3">Continue</v-btn>
             </v-row>
-              <v-text-field label="Brand" placeholder="Brand of the new item" clearable  required ref="ibrand" v-model="ibrand" :rules="[() => !!ibrand || 'This field is required']"></v-text-field>
+              <v-text-field v-on:keyup.enter="e6 = 3" outlined placeholder="Brand of the new item" clearable  required ref="ibrand" v-model="ibrand" :rules="[() => !!ibrand || 'This field is required']"></v-text-field>
         </v-stepper-content>
 
         <v-stepper-step :complete="e6 > 3" step="3">Type or Group of the item
@@ -108,7 +108,7 @@
                 <div class="flex-grow-1"></div>
                 <v-btn text color="primary" :disabled="itype == null" @click="e6 = 4">Continue</v-btn>
             </v-row>
-              <v-text-field label="Type" placeholder="Category of the new item" clearable required ref="itype" v-model="itype" :rules="[() => !!itype || 'This field is required']"></v-text-field>
+              <v-text-field v-on:keyup.enter="e6 = 4" outlined placeholder="Category of the new item" clearable required ref="itype" v-model="itype" :rules="[() => !!itype || 'This field is required']"></v-text-field>
         </v-stepper-content>
 
         <v-stepper-step step="4">
@@ -116,11 +116,12 @@
         <small> Number of items to register </small>
         </v-stepper-step>
         <v-stepper-content step="4">
-              <v-text-field label="Quantity" placeholder="Number of items to register" clearable required ref="iquantity" v-model="iquantity" type="number" :rules="[() => !!iquantity || 'Must be greater than 1']"></v-text-field>
+              <v-text-field v-on:keyup.enter="submit" outlined placeholder="Number of items to register" clearable required ref="iquantity" v-model="iquantity" type="number" :rules="[() => !!iquantity || 'Must be greater than 1']"></v-text-field>
               <v-row align="center" justify="center">
                 <v-btn text @click="$router.go(-1)">Exit</v-btn>
                 <div class="flex-grow-1"></div>
-                <v-btn text @click="e6 = 3">Go back</v-btn>
+                <v-btn class="primary" :disabled="!formisValid" v-if="formisValid" @click="submit" >Register</v-btn>
+                <div style="margin-right: 30px;"></div>
               </v-row>
           </v-stepper-content>
         </v-stepper>

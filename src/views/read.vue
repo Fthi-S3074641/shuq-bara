@@ -9,18 +9,11 @@
           class="hidden-md-and-up"
         ></v-app-bar-nav-icon>
         <v-toolbar-title class="headline flex-grow-1" style="padding-top: 20px;">
-        <v-text-field
-            placeholder="Search ID / Code"
-            append-icon="mdi-magnify"
-            clearable
-            primary
-            autofocus
-            v-model="searchString"
-            underline
-            loading
-            single-line
-          ></v-text-field>
-          </v-toolbar-title>
+        <v-container fluid>
+          <v-text-field placeholder="Search ID / Code" append-icon="mdi-magnify" color="primary darken" autofocus clearable v-model="searchString" :loading="getLoading" >
+          </v-text-field>
+        </v-container>
+      </v-toolbar-title>
                 
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn
@@ -94,7 +87,7 @@
           </v-list-item>
         </template>
 
-        <v-list-item>
+        <v-list-item >
           <v-list-item-content>
             <v-list-item-title>             
               <v-row justify="space-around">
@@ -142,7 +135,7 @@ export default {
             ],
             searchString: null,
             sold: false,
-            shuqbara: []
+            shuqbara: [],
         }
     },
     methods: {
@@ -199,7 +192,11 @@ export default {
         },
         getTitle() {
             return this.$store.state.title
-        }
+        },
+      getLoading() {
+        if ( this.searchString !== null) { return true}
+        else {return false}
+      }
     },
     components: {
       Delete,

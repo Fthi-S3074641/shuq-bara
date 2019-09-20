@@ -27,6 +27,7 @@
              :rules="[() => !!fullName || 'This field is required']"
           ></v-text-field>
           <v-text-field
+           v-on:keyup.enter="e6 = 2"
             placeholder="Phone number"
             preppend-icon="mdi-phone"
             clearable
@@ -58,6 +59,7 @@
              :rules="[() => !!feedbackTitle || 'This field is required']"
         ></v-text-field>
         <v-textarea
+           v-on:keyup.enter="submit"
           outlined
           label="Write all Your feedback"
           value="..."

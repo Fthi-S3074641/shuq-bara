@@ -10,7 +10,7 @@
         <v-row justify="center">
           <v-col cols="12" sm="10" md="8" lg="6">
              <v-text-field placeholder="Main Title" clearable outlined required v-model="feedbackTitle" :rules="[() => !!feedbackTitle || 'This field is required']"></v-text-field>
-              <v-textarea outlined clearable required label="Write all Your feedback" value="..." v-model="mainFeedback" :rules="[() => !!mainFeedback || 'This field is required']"></v-textarea>
+              <v-textarea v-on:keyup.enter="submit" outlined clearable required label="Write all Your feedback" value="..." v-model="mainFeedback" :rules="[() => !!mainFeedback || 'This field is required']"></v-textarea>
             <v-row align="center" justify="center" style="margin: 3px;">
               <div class="flex-grow-1"></div>
               <v-btn color="primary" :disabled="!mainFeedback || !feedbackTitle" @click="submit" text>Submit</v-btn>
