@@ -1,6 +1,7 @@
 <template>
+ <v-row justify="center" style="margin-top: 60px;">
+        <v-col cols="12" sm="10" md="8" lg="6">
   <v-container>
-
     <v-layout
       text-center
       wrap
@@ -10,21 +11,11 @@
     <v-flex xs12 sm10 md8>
       <v-card flat style="margin: 5px;" class="transparent elevation-0">
       <v-card-title>
-            <v-flex xs12>
-                <v-img
-                :src="require('../assets/shuqbarapremium.svg')"
-                class="my-3"
-                contain
-                height="200"
-                @click="$router.go('/')"
-                ></v-img>
-            </v-flex>
             <v-flex mb-4>
                     <h1 >
-                <span class="headline text-uppercase mb-3 red--text"> Shuqbara </span>
-                <span class="headline text-uppercase mb-3 font-weight-light black--text"> Premium</span>
+                <span class="headline text-uppercase mb-3 black--text"> Shuqbara </span>
+                <span class="headline text-uppercase mb-3 font-weight-light red--text"> Premium</span>
                 </h1>
-                <small class="font-weight-light"> Coming up soon! </small>
             </v-flex>
        </v-card-title>
 
@@ -34,10 +25,12 @@
             <h2 class="font-weight-light"> 
             <span @click="$router.push('/getcomment')">
             <v-icon left color="red">mdi-comment-text</v-icon> 
-                <v-btn outlined color="red lighten-1" large @click="goThere('/getcomment')"> Leave a comment </v-btn> </span>
+                <v-btn outlined color="red lighten-1" large @click="goThere('/getcomment')"> Coming Up Soon! </v-btn> </span>
                 </h2> 
         </v-layout>
+        <br>
             <h2 class="font-weight-light"> OR </h2>
+            <br>
             <span>
             <v-icon left color="blue lighten-1">mdi-reload</v-icon> 
             <v-btn outlined color="blue lighten-1" large @click="goThere('/register')"> Continue Testing  </v-btn>
@@ -72,6 +65,8 @@
     </v-flex>
     </v-layout>
   </v-container>
+  </v-col>
+</v-row>
 </template>
 
 <script>

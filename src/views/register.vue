@@ -116,7 +116,7 @@
         <small> Number of items to register </small>
         </v-stepper-step>
         <v-stepper-content step="4">
-              <v-text-field v-on:keyup.enter="submit" outlined placeholder="Number of items to register" clearable required ref="iquantity" v-model="iquantity" type="number" :rules="[() => !!iquantity || 'Must be greater than 1']"></v-text-field>
+              <v-text-field v-on:keyup.enter="submit" min="0" outlined placeholder="Number of items to register" clearable required ref="iquantity" v-model="iquantity" type="number" :rules="[() => !!iquantity || 'Must be greater than 1']"></v-text-field>
               <v-row align="center" justify="center">
                 <v-btn text @click="$router.go(-1)">Exit</v-btn>
                 <div class="flex-grow-1"></div>
@@ -181,7 +181,7 @@ export default {
         
             const inew = {
             icode: this.icode,
-            iquantity: this.iquantity,
+            iquantity: parseInt(this.iquantity),
             ibrand: this.ibrand,
             itype: this.itype,
             istate: "Created",

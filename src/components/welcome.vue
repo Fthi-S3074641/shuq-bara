@@ -1,6 +1,7 @@
 <template>
+ <v-row justify="center" style="margin-top: 30px;">
+        <v-col cols="12" sm="10" md="8" lg="6">
   <v-container>
-
     <v-layout
       text-center
       wrap
@@ -64,6 +65,8 @@
     </v-flex>
     </v-layout>
   </v-container>
+  </v-col>
+  </v-row>
 </template>
 
 <script>

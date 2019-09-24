@@ -5,6 +5,7 @@
 
   <v-card flat class="transparent elevation-0" ref="form" >
       <v-card-title>
+      <v-btn text color="secondary" @click="$router.push('/read')">Exit</v-btn>
         <div class="flex-grow-1"></div>
         <v-btn color="primary" :disabled="!formisValid" @click="submit">Submit</v-btn>
       </v-card-title>

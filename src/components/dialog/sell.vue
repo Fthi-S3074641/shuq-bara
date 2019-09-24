@@ -18,10 +18,12 @@
             label="Quantity"
             clearable
             outlined
+            min="0" 
+            v-on:keyup.enter="sellOne"
             v-model="amount"
             type="number"
           ></v-text-field>
-          <p color="red" class="font-weight-bold red--text" v-if="!quantityEnough">Must be less than what is available</p>
+          <p color="red" class="font-weight-bold red--text" v-if="!quantityEnough">Must be Positive & less than total number</p>
         </v-col>
         </v-row>
   </v-card-text>
@@ -57,7 +59,7 @@ export default {
       return {
         dialog: false,
         sold: false,
-        amount: 1,
+        amount: null,
         soldItem: {}
       }
     },
@@ -93,7 +95,10 @@ export default {
         return this.$store.state.allItems
       },
       quantityEnough() {
-        return this.amount <= this.soldItem.iquantity
+                return (
+          parseInt(this.amount) >= 1 &&
+          parseInt(this.amount) <= parseInt(this.soldItem.iquantity)
+          )
       }
     },
     created() {
