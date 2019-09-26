@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Shuqbara</string>
-    <string name="title_activity_main">Shuqbara</string>
-    <string name="package_name">org.dotftu.shuqbara</string>
-    <string name="fileprovider_authority">org.dotftu.shuqbara.fileprovider</string>
-    <string name="custom_url_scheme">org.dotftu.shuqbara</string>
-</resources>
